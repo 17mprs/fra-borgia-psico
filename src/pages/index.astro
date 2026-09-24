@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr.ssa Francesca Borgia - Prenota Ora</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <style>
 * {
   margin: 0;
@@ -381,8 +382,8 @@ header {
 }
 
 .contact-icon {
-  font-size: 1.5rem;
-  color: var(--primary);
+  display: flex;
+  align-items: center;
 }
 
 .contact-details h4 {
@@ -505,12 +506,12 @@ footer {
         <div class="booking-container">
             <div class="booking-grid">
                 <div class="form-group">
-                    <label for="bookingDate">📅 Seleziona Data</label>
+                    <label for="bookingDate">Seleziona Data</label>
                     <input type="date" id="bookingDate" min="">
                 </div>
                 
                 <div class="form-group">
-                    <label for="bookingService">🎯 Tipo di Seduta</label>
+                    <label for="bookingService">Tipo di Seduta</label>
                     <select id="bookingService">
                         <option value="gratuita">Prima Consulenza GRATUITA</option>
                         <option value="coppia">Terapia di Coppia (€80)</option>
@@ -521,7 +522,7 @@ footer {
             </div>
             
             <div class="form-group">
-                <label>🕐 Seleziona Orario</label>
+                <label>Seleziona Orario</label>
                 <div class="time-slots" id="timeSlots">
                     <div style="grid-column: 1 / -1; text-align: center; color: var(--gray); padding: 1rem;">
                         Seleziona una data per vedere gli orari disponibili
@@ -562,7 +563,7 @@ footer {
         
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">💑</div>
+                <div class="service-icon"><i data-lucide="heart-handshake" style="width:24px;height:24px;color:var(--primary)"></i></div>
                 <h3>Terapia di Coppia</h3>
                 <p style="color: var(--gray); font-size: 0.95rem;">Superare crisi e migliorare la comunicazione</p>
                 <div class="service-price">€80<span>/seduta</span></div>
@@ -570,7 +571,7 @@ footer {
             </div>
             
             <div class="service-card">
-                <div class="service-icon">👨‍👩‍👧‍👦</div>
+                <div class="service-icon"><i data-lucide="users" style="width:24px;height:24px;color:var(--primary)"></i></div>
                 <h3>Terapia Familiare</h3>
                 <p style="color: var(--gray); font-size: 0.95rem;">Migliorare le dinamiche familiari</p>
                 <div class="service-price">€90<span>/seduta</span></div>
@@ -578,7 +579,7 @@ footer {
             </div>
             
             <div class="service-card">
-                <div class="service-icon">🧘</div>
+                <div class="service-icon"><i data-lucide="brain" style="width:24px;height:24px;color:var(--primary)"></i></div>
                 <h3>Terapia Individuale</h3>
                 <p style="color: var(--gray); font-size: 0.95rem;">Benessere personale e crescita</p>
                 <div class="service-price">€70<span>/seduta</span></div>
@@ -622,7 +623,7 @@ footer {
         
         <div class="contact-info">
             <div class="contact-item">
-                <div class="contact-icon">📍</div>
+                <div class="contact-icon"><i data-lucide="map-pin" style="width:24px;height:24px;color:var(--primary)"></i></div>
                 <div class="contact-details">
                     <h4>Indirizzo</h4>
                     <p>Via Bitonto, 2 - Nettuno (RM)</p>
@@ -630,7 +631,7 @@ footer {
             </div>
             
             <div class="contact-item">
-                <div class="contact-icon">📞</div>
+                <div class="contact-icon"><i data-lucide="phone" style="width:24px;height:24px;color:var(--primary)"></i></div>
                 <div class="contact-details">
                     <h4>Telefono</h4>
                     <p><a href="tel:+39XXXXXXXXXX">+39 XXX XXX XXXX</a></p>
@@ -638,7 +639,7 @@ footer {
             </div>
             
             <div class="contact-item">
-                <div class="contact-icon">✉️</div>
+                <div class="contact-icon"><i data-lucide="mail" style="width:24px;height:24px;color:var(--primary)"></i></div>
                 <div class="contact-details">
                     <h4>Email</h4>
                     <p><a href="mailto:info@francescaborgia.it">info@francescaborgia.it</a></p>
@@ -646,7 +647,7 @@ footer {
             </div>
             
             <div class="contact-item">
-                <div class="contact-icon">🕐</div>
+                <div class="contact-icon"><i data-lucide="clock" style="width:24px;height:24px;color:var(--primary)"></i></div>
                 <div class="contact-details">
                     <h4>Orari</h4>
                     <p>Lun-Ven: 9:00-20:00 | Sab: 9:00-14:00</p>
@@ -796,7 +797,7 @@ document.getElementById('confirmBooking').addEventListener('click', () => {
     
     console.log('✅ Prenotazione:', booking);
     
-    showToast('✓ Prenotazione confermata! Riceverai una email di conferma.', 'success');
+    showToast('Prenotazione confermata! Riceverai una email di conferma.', 'success');
     
     // Reset dopo 2 secondi
     setTimeout(() => {
@@ -835,5 +836,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 console.log('✅ Mini Booking App Caricata');
 </script>
+<script>lucide.createIcons();</script>
 </body>
 </html>
