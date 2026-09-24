@@ -297,8 +297,15 @@ header {
 }
 
 .service-icon {
-  font-size: 2.5rem;
   margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.service-icon i {
+  width: 56px;
+  height: 56px;
+  color: var(--primary);
 }
 
 .service-card h3 {
@@ -563,7 +570,7 @@ footer {
         
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon"><i data-lucide="heart-handshake" style="width:24px;height:24px;color:var(--primary)"></i></div>
+                <div class="service-icon"><i data-lucide="heart-handshake"></i></div>
                 <h3>Terapia di Coppia</h3>
                 <p style="color: var(--gray); font-size: 0.95rem;">Superare crisi e migliorare la comunicazione</p>
                 <div class="service-price">€80<span>/seduta</span></div>
@@ -571,7 +578,7 @@ footer {
             </div>
             
             <div class="service-card">
-                <div class="service-icon"><i data-lucide="users" style="width:24px;height:24px;color:var(--primary)"></i></div>
+                <div class="service-icon"><i data-lucide="users"></i></div>
                 <h3>Terapia Familiare</h3>
                 <p style="color: var(--gray); font-size: 0.95rem;">Migliorare le dinamiche familiari</p>
                 <div class="service-price">€90<span>/seduta</span></div>
@@ -579,7 +586,7 @@ footer {
             </div>
             
             <div class="service-card">
-                <div class="service-icon"><i data-lucide="brain" style="width:24px;height:24px;color:var(--primary)"></i></div>
+                <div class="service-icon"><i data-lucide="brain"></i></div>
                 <h3>Terapia Individuale</h3>
                 <p style="color: var(--gray); font-size: 0.95rem;">Benessere personale e crescita</p>
                 <div class="service-price">€70<span>/seduta</span></div>
