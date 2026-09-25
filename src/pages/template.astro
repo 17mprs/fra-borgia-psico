@@ -1,0 +1,935 @@
+---
+---
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr.ssa Francesca Borgia - Prenota Ora</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #1e4a5f;
+  --secondary: #c4a770;
+  --success: #38A169;
+  --dark: #0f1419;
+  --light: #f9f7f4;
+  --white: #ffffff;
+  --gray: #6b7280;
+  --border: #e5e7eb;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--dark);
+  line-height: 1.6;
+  background: var(--light);
+  font-size: 16px;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  color: var(--dark);
+}
+
+h1 {
+  font-size: clamp(2rem, 5vw, 2.5rem);
+  margin-bottom: 0.5rem;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  margin-bottom: 1rem;
+}
+
+h3 {
+  font-size: clamp(1.25rem, 3vw, 1.5rem);
+  margin-bottom: 0.75rem;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* HEADER MINIMAL */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 1rem 0;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.header-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--primary);
+  white-space: nowrap;
+  font-size: clamp(0.85rem, 3.5vw, 1.25rem);
+}
+
+.cta-btn {
+  background: linear-gradient(135deg, var(--primary), #2d5366);
+  color: var(--white);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.3s;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(30, 74, 95, 0.3);
+}
+
+/* HERO COMPATTO */
+.hero {
+  padding: 8rem 1.5rem 4rem;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(30, 74, 95, 0.9), rgba(45, 83, 102, 0.8)),
+              url('https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=1920&h=600&fit=crop&q=80') center/cover;
+  color: var(--white);
+}
+
+.therapist-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid rgba(255, 255, 255, 0.3);
+  margin: 0 auto 1rem;
+  object-fit: cover;
+}
+
+.hero h1 {
+  color: var(--white);
+  margin-bottom: 0.5rem;
+}
+
+.hero p {
+  font-size: 1.125rem;
+  opacity: 0.95;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.credentials {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.badge {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* SEZIONI */
+.section {
+  padding: 3rem 1.5rem;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--primary);
+}
+
+/* MINI BOOKING */
+.booking-container {
+  background: var(--white);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.time-slot {
+  padding: 0.75rem;
+  border: 2px solid var(--border);
+  border-radius: 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.time-slot:hover {
+  border-color: var(--primary);
+  background: rgba(30, 74, 95, 0.05);
+}
+
+.time-slot.selected {
+  background: var(--primary);
+  color: var(--white);
+  border-color: var(--primary);
+}
+
+.time-slot.disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.booking-summary {
+  background: rgba(56, 161, 105, 0.1);
+  border: 2px solid var(--success);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  display: none;
+}
+
+.booking-summary.show {
+  display: block;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+  font-size: 0.95rem;
+}
+
+.summary-label {
+  color: var(--gray);
+  font-weight: 600;
+}
+
+.summary-value {
+  color: var(--dark);
+  font-weight: 700;
+}
+
+/* MINI SERVIZI */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.service-card {
+  background: var(--white);
+  padding: 2rem 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+}
+
+.service-icon {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.service-icon i {
+  width: 56px;
+  height: 56px;
+  color: var(--primary);
+}
+
+.service-card h3 {
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.service-price {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 1rem 0;
+}
+
+.service-price span {
+  font-size: 0.875rem;
+  color: var(--gray);
+  font-weight: 500;
+}
+
+/* MINI RECENSIONI */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.review-card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.review-stars {
+  color: #FFC107;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+}
+
+.review-text {
+  color: var(--gray);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.review-author {
+  font-weight: 600;
+  color: var(--dark);
+  font-size: 0.95rem;
+}
+
+/* CONTATTI MINIMAL */
+.contact-info {
+  background: var(--white);
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: 0 auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.contact-item:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.contact-icon {
+  display: flex;
+  align-items: center;
+}
+
+.contact-details h4 {
+  font-size: 0.875rem;
+  color: var(--gray);
+  margin-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+.contact-details p {
+  font-size: 1rem;
+  color: var(--dark);
+  font-weight: 600;
+  margin: 0;
+}
+
+.contact-details a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.contact-details a:hover {
+  text-decoration: underline;
+}
+
+/* FOOTER MINIMAL */
+footer {
+  background: var(--dark);
+  color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 2rem 1.5rem;
+  font-size: 0.875rem;
+}
+
+/* TOAST */
+.toast {
+  position: fixed;
+  top: 100px;
+  right: 20px;
+  background: var(--white);
+  padding: 1rem 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  border-left: 4px solid var(--success);
+  z-index: 10000;
+  transform: translateX(400px);
+  transition: transform 0.3s;
+  max-width: 350px;
+}
+
+.toast.show {
+  transform: translateX(0);
+}
+
+.toast.error {
+  border-left-color: #DC2626;
+}
+
+/* RESPONSIVE */
+@media (min-width: 768px) {
+  .booking-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 6rem 1rem 3rem;
+    padding-top: 7rem;
+  }
+
+  .hero h1 {
+    font-size: 2.4rem;
+  }
+
+  .section {
+    padding: 2rem 1rem;
+  }
+
+  .time-slots {
+    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+  }
+
+  .cta-btn {
+    padding: 0.65rem 1rem;
+    font-size: 0.875rem;
+    white-space: nowrap;
+    font-size: 0.8rem;
+    padding: 0.55rem 0.85rem;
+  }
+}
+
+.wa-float {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  width: 68px;
+  height: 68px;
+  background: #25D366;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.45);
+  z-index: 9999;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.wa-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+@media (max-width: 767px) {
+  .wa-float {
+    display: flex;
+  }
+}
+
+.tel-float {
+  display: none;
+  position: fixed;
+  bottom: 24px;
+  left: 20px;
+  width: 68px;
+  height: 68px;
+  background: #ffffff;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  z-index: 9999;
+  transition: transform 0.2s, box-shadow 0.2s;
+  border: 2px solid #25D366;
+}
+
+.tel-float:hover {
+  transform: scale(1.08);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+@media (max-width: 767px) {
+  .tel-float {
+    display: flex;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+    <div class="header-content">
+        <div class="logo">Dr.ssa Francesca Borgia</div>
+        <a href="#prenota" class="cta-btn">Prenota Ora</a>
+    </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+    <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=400&fit=crop&q=85" alt="Dr.ssa Francesca Borgia" class="therapist-image">
+    <h1>Dr.ssa Francesca Borgia</h1>
+    <p>Psicoterapeuta specializzata in Terapia di Coppia, Familiare e Individuale</p>
+    <div class="credentials">
+        <span class="badge">Albo Psicologi Lazio</span>
+        <span class="badge">15 anni esperienza</span>
+        <span class="badge">Prima consulenza GRATIS</span>
+    </div>
+    <div style="margin-top: 2rem;">
+        <a href="#prenota" class="cta-btn">Prenota Consulenza Gratuita</a>
+    </div>
+</section>
+
+<!-- MINI BOOKING -->
+<section class="section" id="prenota" style="background: linear-gradient(135deg, rgba(249, 247, 244, 1), rgba(255, 255, 255, 0.95));">
+    <div class="container">
+        <h2 class="section-title">Prenota Ora</h2>
+        
+        <div class="booking-container">
+            <div class="booking-grid">
+                <div class="form-group">
+                    <label for="bookingDate">Seleziona Data</label>
+                    <input type="date" id="bookingDate" min="">
+                </div>
+                
+                <div class="form-group">
+                    <label for="bookingService">Tipo di Seduta</label>
+                    <select id="bookingService">
+                        <option value="gratuita">Prima Consulenza GRATUITA</option>
+                        <option value="coppia">Terapia di Coppia (€80)</option>
+                        <option value="famiglia">Terapia Familiare (€90)</option>
+                        <option value="individuale">Terapia Individuale (€70)</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Seleziona Orario</label>
+                <div class="time-slots" id="timeSlots">
+                    <div style="grid-column: 1 / -1; text-align: center; color: var(--gray); padding: 1rem;">
+                        Seleziona una data per vedere gli orari disponibili
+                    </div>
+                </div>
+            </div>
+            
+            <div class="booking-summary" id="bookingSummary">
+                <h3 style="margin-bottom: 1rem; color: var(--success);">✓ Riepilogo Prenotazione</h3>
+                <div class="summary-row">
+                    <span class="summary-label">Data:</span>
+                    <span class="summary-value" id="summaryDate">-</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Orario:</span>
+                    <span class="summary-value" id="summaryTime">-</span>
+                </div>
+                <div class="summary-row">
+                    <span class="summary-label">Servizio:</span>
+                    <span class="summary-value" id="summaryService">-</span>
+                </div>
+                <div class="summary-row" style="border-top: 2px solid var(--success); padding-top: 0.75rem; margin-top: 0.75rem;">
+                    <span class="summary-label" style="font-size: 1.125rem;">Totale:</span>
+                    <span class="summary-value" style="font-size: 1.25rem; color: var(--success);" id="summaryPrice">GRATUITO</span>
+                </div>
+                <button class="cta-btn" id="confirmBooking" style="width: 100%; margin-top: 1rem;">
+                    Conferma Prenotazione
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MINI SERVIZI -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">I Miei Servizi</h2>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
+</div>
+                <h3>Terapia di Coppia</h3>
+                <p style="color: var(--gray); font-size: 0.95rem;">Superare crisi e migliorare la comunicazione</p>
+                <div class="service-price">€80<span>/seduta</span></div>
+                <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+</div>
+                <h3>Terapia Familiare</h3>
+                <p style="color: var(--gray); font-size: 0.95rem;">Migliorare le dinamiche familiari</p>
+                <div class="service-price">€90<span>/seduta</span></div>
+                <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">
+<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/></svg>
+</div>
+                <h3>Terapia Individuale</h3>
+                <p style="color: var(--gray); font-size: 0.95rem;">Benessere personale e crescita</p>
+                <div class="service-price">€70<span>/seduta</span></div>
+                <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- MINI RECENSIONI -->
+<section class="section" style="background: linear-gradient(135deg, rgba(249, 247, 244, 1), rgba(255, 255, 255, 0.95));">
+    <div class="container">
+        <h2 class="section-title">Cosa Dicono i Pazienti</h2>
+        
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"La Dr.ssa Marchetti è stata fondamentale per la nostra coppia. Professionale, empatica e capace di creare un ambiente sicuro."</p>
+                <p class="review-author">— Laura e Marco</p>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Grazie alla terapia ho ritrovato serenità e strumenti concreti per gestire l'ansia. Consigliatissima!"</p>
+                <p class="review-author">— Giulia R.</p>
+            </div>
+            
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Un percorso che ha cambiato la nostra famiglia. Grande professionalità e umanità."</p>
+                <p class="review-author">— Famiglia Bianchi</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CONTATTI -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Contatti</h2>
+        
+        <div class="contact-info">
+            <div class="contact-item">
+                <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg></div>
+                <div class="contact-details">
+                    <h4>Indirizzo</h4>
+                    <p>Via Bitonto, 2 - Nettuno (RM)</p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13.832 16.568a1 1 0 0 0 1.213-.303l.355-.465A2 2 0 0 1 17 15h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2A18 18 0 0 1 2 4a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v3a2 2 0 0 1-.8 1.6l-.468.351a1 1 0 0 0-.292 1.233 14 14 0 0 0 6.392 6.384"/></svg></div>
+                <div class="contact-details">
+                    <h4>Telefono</h4>
+                    <p><a href="tel:+39XXXXXXXXXX">+39 XXX XXX XXXX</a></p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></div>
+                <div class="contact-details">
+                    <h4>Email</h4>
+                    <p><a href="mailto:info@francescaborgia.it">info@francescaborgia.it</a></p>
+                </div>
+            </div>
+            
+            <div class="contact-item">
+                <div class="contact-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6v6l4 2"/><circle cx="12" cy="12" r="10"/></svg></div>
+                <div class="contact-details">
+                    <h4>Orari</h4>
+                    <p>Lun-Ven: 9:00-20:00 | Sab: 9:00-14:00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <p>&copy; 2026 Dr.ssa Francesca Borgia - Psicoterapeuta | Albo Psicologi Lazio (placeholder) | P.IVA: (placeholder)</p>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+    <div id="toastMessage"></div>
+</div>
+
+<script>
+// CONFIGURAZIONE
+const bookingState = {
+    date: null,
+    time: null,
+    service: 'gratuita'
+};
+
+const weeklySlots = {
+    1: ['09:00', '10:30', '14:00', '15:30', '17:00'], // Lunedì
+    2: ['09:00', '10:30', '14:00', '15:30', '17:00'],
+    3: ['09:00', '10:30', '14:00', '15:30'],
+    4: ['09:00', '10:30', '14:00', '15:30', '17:00'],
+    5: ['09:00', '10:30', '14:00', '15:30'],
+    6: ['09:00', '10:30', '12:00'],
+    0: []
+};
+
+const bookedSlots = {
+    '2025-01-15': ['09:00', '14:00'],
+    '2025-01-16': ['10:30']
+};
+
+const services = {
+    'gratuita': { name: 'Prima Consulenza GRATUITA', price: 0 },
+    'coppia': { name: 'Terapia di Coppia', price: 80 },
+    'famiglia': { name: 'Terapia Familiare', price: 90 },
+    'individuale': { name: 'Terapia Individuale', price: 70 }
+};
+
+// INIT DATA MIN
+document.getElementById('bookingDate').min = new Date().toISOString().split('T')[0];
+
+// GESTIONE DATA
+document.getElementById('bookingDate').addEventListener('change', function() {
+    const date = new Date(this.value + 'T00:00:00');
+    bookingState.date = this.value;
+    bookingState.time = null;
+    
+    const dayOfWeek = date.getDay();
+    const slots = weeklySlots[dayOfWeek] || [];
+    const booked = bookedSlots[this.value] || [];
+    
+    const container = document.getElementById('timeSlots');
+    container.innerHTML = '';
+    
+    if (slots.length === 0) {
+        container.innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--gray); padding: 1rem;">Nessuna disponibilità per questa data</div>';
+        return;
+    }
+    
+    slots.forEach(time => {
+        const slot = document.createElement('div');
+        slot.className = 'time-slot';
+        slot.textContent = time;
+        
+        if (booked.includes(time)) {
+            slot.classList.add('disabled');
+        } else {
+            slot.addEventListener('click', () => selectTime(time, slot));
+        }
+        
+        container.appendChild(slot);
+    });
+    
+    updateSummary();
+});
+
+// GESTIONE SERVIZIO
+document.getElementById('bookingService').addEventListener('change', function() {
+    bookingState.service = this.value;
+    updateSummary();
+});
+
+// SELEZIONE ORARIO
+function selectTime(time, element) {
+    document.querySelectorAll('.time-slot').forEach(el => el.classList.remove('selected'));
+    element.classList.add('selected');
+    bookingState.time = time;
+    updateSummary();
+}
+
+// AGGIORNA RIEPILOGO
+function updateSummary() {
+    const summary = document.getElementById('bookingSummary');
+    
+    if (bookingState.date && bookingState.time) {
+        summary.classList.add('show');
+        
+        const date = new Date(bookingState.date + 'T00:00:00');
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+        
+        document.getElementById('summaryDate').textContent = date.toLocaleDateString('it-IT', options);
+        document.getElementById('summaryTime').textContent = bookingState.time;
+        document.getElementById('summaryService').textContent = services[bookingState.service].name;
+        
+        const price = services[bookingState.service].price;
+        document.getElementById('summaryPrice').textContent = price === 0 ? 'GRATUITO' : `€${price}`;
+    } else {
+        summary.classList.remove('show');
+    }
+}
+
+// CONFERMA PRENOTAZIONE
+document.getElementById('confirmBooking').addEventListener('click', () => {
+    if (!bookingState.date || !bookingState.time) {
+        showToast('Seleziona data e orario', 'error');
+        return;
+    }
+    
+    const booking = {
+        id: 'BOOK-' + Date.now(),
+        date: bookingState.date,
+        time: bookingState.time,
+        service: services[bookingState.service].name,
+        price: services[bookingState.service].price,
+        timestamp: new Date().toISOString()
+    };
+    
+    // Salva in localStorage
+    let bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+    bookings.push(booking);
+    localStorage.setItem('bookings', JSON.stringify(bookings));
+    
+    // Aggiungi a bookedSlots
+    if (!bookedSlots[bookingState.date]) bookedSlots[bookingState.date] = [];
+    bookedSlots[bookingState.date].push(bookingState.time);
+    
+    console.log('✅ Prenotazione:', booking);
+    
+    showToast('Prenotazione confermata! Riceverai una email di conferma.', 'success');
+    
+    // Reset dopo 2 secondi
+    setTimeout(() => {
+        document.getElementById('bookingDate').value = '';
+        document.getElementById('timeSlots').innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--gray); padding: 1rem;">Seleziona una data per vedere gli orari disponibili</div>';
+        document.getElementById('bookingSummary').classList.remove('show');
+        bookingState.date = null;
+        bookingState.time = null;
+    }, 2000);
+});
+
+// TOAST NOTIFICATION
+function showToast(message, type = 'success') {
+    const toast = document.getElementById('toast');
+    const toastMessage = document.getElementById('toastMessage');
+    
+    toast.className = 'toast ' + type;
+    toastMessage.textContent = message;
+    toast.classList.add('show');
+    
+    setTimeout(() => {
+        toast.classList.remove('show');
+    }, 4000);
+}
+
+// SMOOTH SCROLL
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+console.log('✅ Mini Booking App Caricata');
+</script>
+
+<a href="tel:+393516000621"
+   class="tel-float"
+   aria-label="Chiama ora">
+  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#25D366" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.27h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6.06 6.06l.91-.91a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+  </svg>
+</a>
+
+<a href="https://wa.me/393386712792?text=Ciao%20Dr.ssa%20Borgia%2C%20vorrei%20informazioni%20per%20una%20consulenza"
+   class="wa-float"
+   target="_blank"
+   aria-label="Contatta su WhatsApp">
+  <svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="white">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.143a.75.75 0 0 0 .9.972l5.522-1.456A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 0 1-4.953-1.357l-.355-.211-3.678.970.988-3.607-.232-.371A9.715 9.715 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+  </svg>
+</a>
+</body>
+</html>
