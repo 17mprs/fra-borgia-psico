@@ -550,7 +550,7 @@ footer {
 <header>
     <div class="header-content">
         <div class="logo">Dr.ssa Francesca Borgia</div>
-        <a href="#prenota" class="cta-btn">Prenota Ora</a>
+        <a href="#prenota" class="cta-btn">Primo colloquio</a>
     </div>
 </header>
 
@@ -558,21 +558,21 @@ footer {
 <section class="hero">
     <img src="https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=400&h=400&fit=crop&q=85" alt="Dr.ssa Francesca Borgia" class="therapist-image">
     <h1>Dr.ssa Francesca Borgia</h1>
-    <p>Psicoterapeuta specializzata in Terapia di Coppia, Familiare e Individuale</p>
+    <p>Psicologa clinica perinatale, specializzanda in psicoterapia relazionale e sistemica</p>
     <div class="credentials">
-        <span class="badge">Albo Psicologi Lazio</span>
-        <span class="badge">15 anni esperienza</span>
-        <span class="badge">Prima consulenza GRATIS</span>
+        <span class="badge">Psicologa clinica perinatale</span>
+        <span class="badge">Psicoterapia relazionale e sistemica</span>
+        <span class="badge">Primo colloquio conoscitivo</span>
     </div>
     <div style="margin-top: 2rem;">
-        <a href="#prenota" class="cta-btn">Prenota Consulenza Gratuita</a>
+        <a href="#prenota" class="cta-btn">Richiedi un primo colloquio</a>
     </div>
 </section>
 
 <!-- MINI BOOKING -->
 <section class="section" id="prenota" style="background: linear-gradient(135deg, rgba(249, 247, 244, 1), rgba(255, 255, 255, 0.95));">
     <div class="container">
-        <h2 class="section-title">Prenota Ora</h2>
+        <h2 class="section-title">Richiedi un primo colloquio</h2>
         
         <div class="booking-container">
             <div class="booking-grid">
@@ -584,10 +584,12 @@ footer {
                 <div class="form-group">
                     <label for="bookingService">Tipo di Seduta</label>
                     <select id="bookingService">
-                        <option value="gratuita">Prima Consulenza GRATUITA</option>
-                        <option value="coppia">Terapia di Coppia (€80)</option>
-                        <option value="famiglia">Terapia Familiare (€90)</option>
-                        <option value="individuale">Terapia Individuale (€70)</option>
+                        <option value="individuale_online">Terapia Individuale Online (€50)</option>
+                        <option value="individuale_presenza">Terapia Individuale in Presenza (€75)</option>
+                        <option value="coppia_online">Spazio della Coppia Online (€100)</option>
+                        <option value="coppia_coterapia">Spazio della Coppia in Co-terapia (€120)</option>
+                        <option value="famiglia">Psicoterapia Familiare in Co-terapia (€120)</option>
+                        <option value="parent_training">Parent Training (€90)</option>
                     </select>
                 </div>
             </div>
@@ -634,34 +636,36 @@ footer {
         
         <div class="services-grid">
             <div class="service-card">
-                <div class="service-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg>
+  <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+  <h3>Terapia Individuale</h3>
+  <p style="color: var(--gray); font-size: 0.95rem;">Consapevolezza, fiducia e autoefficacia nel tuo percorso di vita</p>
+  <div class="service-price">€50<span> online / €75 presenza</span></div>
+  <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
-                <h3>Terapia di Coppia</h3>
-                <p style="color: var(--gray); font-size: 0.95rem;">Superare crisi e migliorare la comunicazione</p>
-                <div class="service-price">€80<span>/seduta</span></div>
-                <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+
+<div class="service-card">
+  <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg></div>
+  <h3>Spazio della Coppia</h3>
+  <p style="color: var(--gray); font-size: 0.95rem;">Dialogo, fiducia e intimità nei momenti di cambiamento</p>
+  <div class="service-price">€100<span> online / €120 co-terapia</span></div>
+  <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
-                <h3>Terapia Familiare</h3>
-                <p style="color: var(--gray); font-size: 0.95rem;">Migliorare le dinamiche familiari</p>
-                <div class="service-price">€90<span>/seduta</span></div>
-                <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
-            </div>
-            
-            <div class="service-card">
-                <div class="service-icon">
-<svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z"/><path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z"/><path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4"/><path d="M17.599 6.5a3 3 0 0 0 .399-1.375"/><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5"/><path d="M3.477 10.896a4 4 0 0 1 .585-.396"/><path d="M19.938 10.5a4 4 0 0 1 .585.396"/><path d="M6 18a4 4 0 0 1-1.967-.516"/><path d="M19.967 17.484A4 4 0 0 1 18 18"/></svg>
+
+<div class="service-card">
+  <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+  <h3>Psicoterapia Familiare</h3>
+  <p style="color: var(--gray); font-size: 0.95rem;">Conflitti, crescita e nuove possibilità per famiglie con bambini e adolescenti</p>
+  <div class="service-price">€120<span> co-terapia</span></div>
+  <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
-                <h3>Terapia Individuale</h3>
-                <p style="color: var(--gray); font-size: 0.95rem;">Benessere personale e crescita</p>
-                <div class="service-price">€70<span>/seduta</span></div>
-                <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
-            </div>
+
+<div class="service-card">
+  <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6"/><path d="M12 9v6"/><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg></div>
+  <h3>Parent Training</h3>
+  <p style="color: var(--gray); font-size: 0.95rem;">Supporto alla genitorialità: comportamenti, sonno, alimentazione e sviluppo</p>
+  <div class="service-price">€90<span>/coppia genitoriale</span></div>
+  <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
+</div>
         </div>
     </div>
 </section>
@@ -736,7 +740,7 @@ footer {
 
 <!-- FOOTER -->
 <footer>
-    <p>&copy; 2026 Dr.ssa Francesca Borgia - Psicoterapeuta | Albo Psicologi Lazio (placeholder) | P.IVA: (placeholder)</p>
+    <p>&copy; 2026 Dr.ssa Francesca Borgia - Psicologa Clinica | Albo Psicologi Lazio (placeholder) | P.IVA: (placeholder)</p>
 </footer>
 
 <!-- TOAST -->
@@ -753,13 +757,13 @@ const bookingState = {
 };
 
 const weeklySlots = {
-    1: ['09:00', '10:30', '14:00', '15:30', '17:00'], // Lunedì
-    2: ['09:00', '10:30', '14:00', '15:30', '17:00'],
-    3: ['09:00', '10:30', '14:00', '15:30'],
-    4: ['09:00', '10:30', '14:00', '15:30', '17:00'],
-    5: ['09:00', '10:30', '14:00', '15:30'],
-    6: ['09:00', '10:30', '12:00'],
-    0: []
+  0: [], // domenica
+  1: [], // lunedì
+  2: ['16:00'], // martedì
+  3: [], // mercoledì
+  4: ['11:30'], // giovedì
+  5: ['10:00'], // venerdì
+  6: []  // sabato
 };
 
 const bookedSlots = {
@@ -768,10 +772,12 @@ const bookedSlots = {
 };
 
 const services = {
-    'gratuita': { name: 'Prima Consulenza GRATUITA', price: 0 },
-    'coppia': { name: 'Terapia di Coppia', price: 80 },
-    'famiglia': { name: 'Terapia Familiare', price: 90 },
-    'individuale': { name: 'Terapia Individuale', price: 70 }
+  'individuale_online': { name: 'Terapia Individuale Online', price: 50 },
+  'individuale_presenza': { name: 'Terapia Individuale in Presenza', price: 75 },
+  'coppia_online': { name: 'Spazio della Coppia Online', price: 100 },
+  'coppia_coterapia': { name: 'Spazio della Coppia in Co-terapia', price: 120 },
+  'famiglia': { name: 'Psicoterapia Familiare in Co-terapia', price: 120 },
+  'parent_training': { name: 'Parent Training', price: 90 }
 };
 
 // INIT DATA MIN
