@@ -640,7 +640,7 @@ footer {
   <h3>Terapia Individuale</h3>
   <p style="color: var(--gray); font-size: 0.95rem;">Consapevolezza, fiducia e autoefficacia nel tuo percorso di vita</p>
   <div class="service-price">€50<span> online / €75 presenza</span></div>
-  <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
+  <a href="#prenota" data-service="individuale_online" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
 
 <div class="service-card">
@@ -648,7 +648,7 @@ footer {
   <h3>Spazio della Coppia</h3>
   <p style="color: var(--gray); font-size: 0.95rem;">Dialogo, fiducia e intimità nei momenti di cambiamento</p>
   <div class="service-price">€100<span> online / €120 co-terapia</span></div>
-  <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
+  <a href="#prenota" data-service="coppia_online" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
 
 <div class="service-card">
@@ -656,7 +656,7 @@ footer {
   <h3>Psicoterapia Familiare</h3>
   <p style="color: var(--gray); font-size: 0.95rem;">Conflitti, crescita e nuove possibilità per famiglie con bambini e adolescenti</p>
   <div class="service-price">€120<span> co-terapia</span></div>
-  <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
+  <a href="#prenota" data-service="famiglia" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
 
 <div class="service-card">
@@ -664,7 +664,7 @@ footer {
   <h3>Parent Training</h3>
   <p style="color: var(--gray); font-size: 0.95rem;">Supporto alla genitorialità: comportamenti, sonno, alimentazione e sviluppo</p>
   <div class="service-price">€90<span>/coppia genitoriale</span></div>
-  <a href="#prenota" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
+  <a href="#prenota" data-service="parent_training" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
         </div>
     </div>
@@ -905,6 +905,18 @@ function showToast(message, type = 'success') {
         toast.classList.remove('show');
     }, 4000);
 }
+
+// AUTO-SELECT SERVIZIO DA CARD
+document.querySelectorAll('[data-service]').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const serviceId = this.getAttribute('data-service');
+    const select = document.getElementById('bookingService');
+    if (select && serviceId) {
+      select.value = serviceId;
+      bookingState.service = serviceId;
+    }
+  });
+});
 
 // SMOOTH SCROLL
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
