@@ -112,19 +112,15 @@ header {
 
 /* HERO COMPATTO */
 .hero {
-  text-align: center;
-  color: var(--white);
-  position: relative;
-}
-
-.hero-bg {
   background: url('/sfondo-desktop.webp') center/cover no-repeat;
-  height: 420px;
+  min-height: 520px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: center;
-  padding-top: 5rem;
+  padding: 5.5rem 1.5rem 3rem;
+  text-align: center;
+  color: var(--white);
 }
 
 .hero-badges-top {
@@ -132,15 +128,32 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem;
-  max-width: 700px;
-  padding: 0 1rem;
-  padding-top: 0;
   width: 100%;
 }
 
-.hero-content {
-  background: var(--primary);
-  padding: 2.5rem 1.5rem 3rem;
+.hero-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  opacity: 0.95;
+  max-width: 600px;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+.cta-hero {
+  background: #ffffff;
+  color: #1e4a5f;
+  padding: 0.85rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1rem;
 }
 
 .therapist-image {
@@ -485,16 +498,10 @@ footer {
 }
 
 @media (max-width: 767px) {
-  .hero-bg {
+  .hero {
     background-image: url('/sfondo-mobile.webp');
-    height: 520px;
-    padding-top: 5rem;
-    justify-content: flex-start;
-    align-items: center;
-  }
-
-  .hero-content {
-    padding: 2rem 1rem 2.5rem;
+    min-height: 600px;
+    padding: 5rem 1rem 2.5rem;
   }
 
   .section {
@@ -581,20 +588,16 @@ footer {
 </header>
 
 <!-- HERO -->
-<section class="hero">
-    <div class="hero-bg">
-        <div class="hero-badges-top">
-            <span class="badge">Psicologa clinica perinatale</span>
-            <span class="badge">Psicoterapia relazionale e sistemica</span>
-            <span class="badge">Primo colloquio conoscitivo</span>
-        </div>
-    </div>
-    <div class="hero-content">
-        <p>Psicologa clinica perinatale, specializzanda in psicoterapia relazionale e sistemica</p>
-        <div style="margin-top: 2rem;">
-            <a href="#prenota" style="background: #ffffff; color: #1e4a5f; padding: 0.75rem 2rem; border-radius: 8px; font-weight: 700; text-decoration: none; display: inline-block; font-size: 1rem;">Richiedi un primo colloquio</a>
-        </div>
-    </div>
+<section class="hero" id="hero">
+  <div class="hero-badges-top">
+    <span class="badge">Psicologa clinica perinatale</span>
+    <span class="badge">Psicoterapia relazionale e sistemica</span>
+    <span class="badge">Primo colloquio conoscitivo</span>
+  </div>
+  <div class="hero-bottom">
+    <p class="hero-sub">Psicologa clinica perinatale, specializzanda in psicoterapia relazionale e sistemica</p>
+    <a href="#prenota" class="cta-hero">Richiedi un primo colloquio</a>
+  </div>
 </section>
 
 <!-- MINI BOOKING -->
