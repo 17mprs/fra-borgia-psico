@@ -23,6 +23,19 @@
   --white: #ffffff;
   --gray: #6b7280;
   --border: #e5e7eb;
+  --gradient-main: radial-gradient(
+      ellipse at 78% 15%,
+      rgba(69, 145, 180, 0.32) 0%,
+      rgba(69, 145, 180, 0) 48%
+    ),
+    linear-gradient(
+      110deg,
+      #002F52 0%,
+      #063E62 28%,
+      #115075 52%,
+      #25698F 76%,
+      #3984A8 100%
+    );
 }
 
 html {
@@ -33,7 +46,7 @@ body {
   font-family: 'Inter', sans-serif;
   color: var(--dark);
   line-height: 1.6;
-  background: var(--light);
+  background: var(--gradient-main);
   font-size: 16px;
 }
 
@@ -271,7 +284,7 @@ header {
 }
 
 .time-slot.selected {
-  background: var(--primary);
+  background: var(--gradient-main);
   color: var(--white);
   border-color: var(--primary);
 }
@@ -603,7 +616,7 @@ footer {
 </section>
 
 <!-- MINI BOOKING -->
-<section class="section" id="prenota" style="background: linear-gradient(180deg, #0f3a52 0%, #1a4a63 100%);">
+<section class="section" id="prenota" style="background: var(--gradient-main);">
     <div class="container">
         <h2 class="section-title">Richiedi un primo colloquio</h2>
         
@@ -704,7 +717,7 @@ footer {
 </section>
 
 <!-- MINI RECENSIONI -->
-<section class="section" style="background: linear-gradient(135deg, rgba(249, 247, 244, 1), rgba(255, 255, 255, 0.95));">
+<section class="section" style="background: var(--gradient-main);">
     <div class="container">
         <h2 class="section-title">Cosa Dicono i Pazienti</h2>
         
