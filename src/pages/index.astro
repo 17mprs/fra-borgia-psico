@@ -112,16 +112,13 @@ header {
 
 /* HERO COMPATTO */
 .hero {
-  color: var(--white);
-}
-
-.hero-image {
   background: url('/sfondo-desktop.webp') center/cover no-repeat;
-  height: 380px;
+  min-height: 700px;
   display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  padding-top: 2rem;
+  flex-direction: column;
+  color: var(--white);
+  text-align: center;
+  padding: 1.5rem 1.5rem 6rem;
 }
 
 .hero-badges-top {
@@ -129,20 +126,22 @@ header {
   flex-wrap: wrap;
   justify-content: center;
   gap: 0.6rem;
-  padding: 0 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
-.hero-text-block {
-  background: #1e4a5f;
-  text-align: center;
-  padding: 2.5rem 1.5rem 3rem;
+.hero-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .hero-sub {
   font-size: 1.1rem;
   opacity: 0.95;
   max-width: 600px;
-  margin: 0 auto 2rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
 }
 
 .cta-hero {
@@ -498,13 +497,10 @@ footer {
 }
 
 @media (max-width: 767px) {
-  .hero-image {
+  .hero {
     background-image: url('/sfondo-mobile.webp');
-    height: 420px;
-    padding-top: 1.5rem;
-  }
-  .hero-text-block {
-    padding: 2rem 1rem 2.5rem;
+    min-height: 780px;
+    padding: 1.5rem 1rem 7rem;
   }
 
   .section {
@@ -592,14 +588,12 @@ footer {
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-image">
-    <div class="hero-badges-top">
-      <span class="badge">Psicologa clinica perinatale</span>
-      <span class="badge">Psicoterapia relazionale e sistemica</span>
-      <span class="badge">Primo colloquio conoscitivo</span>
-    </div>
+  <div class="hero-badges-top">
+    <span class="badge">Psicologa clinica perinatale</span>
+    <span class="badge">Psicoterapia relazionale e sistemica</span>
+    <span class="badge">Primo colloquio conoscitivo</span>
   </div>
-  <div class="hero-text-block">
+  <div class="hero-bottom">
     <p class="hero-sub">Psicologa clinica perinatale, specializzanda in psicoterapia relazionale e sistemica</p>
     <a href="#prenota" class="cta-hero">Richiedi un primo colloquio</a>
   </div>
