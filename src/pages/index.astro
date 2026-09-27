@@ -219,6 +219,13 @@ header {
   color: var(--primary);
 }
 
+.text-gradient {
+  background: var(--gradient-main);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
 /* MINI BOOKING */
 .booking-container {
   background: var(--white);
@@ -616,9 +623,9 @@ footer {
 </section>
 
 <!-- MINI BOOKING -->
-<section class="section" id="prenota" style="background: var(--gradient-main);">
+<section class="section" id="prenota" style="background: var(--white);">
     <div class="container">
-        <h2 class="section-title">Richiedi un primo colloquio</h2>
+        <h2 class="section-title text-gradient">Richiedi un primo colloquio</h2>
         
         <div class="booking-container">
             <div class="booking-grid">
@@ -678,38 +685,38 @@ footer {
 <!-- MINI SERVIZI -->
 <section class="section">
     <div class="container">
-        <h2 class="section-title">I Miei Servizi</h2>
+        <h2 class="section-title" style="color: var(--white);">I Miei Servizi</h2>
         
         <div class="services-grid">
             <div class="service-card">
   <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-  <h3>Terapia Individuale</h3>
+  <h3 class="text-gradient">Terapia Individuale</h3>
   <p style="color: var(--gray); font-size: 0.95rem;">Consapevolezza, fiducia e autoefficacia nel tuo percorso di vita</p>
-  <div class="service-price">€50<span> online / €75 presenza</span></div>
+  <div class="service-price text-gradient">€50<span> online / €75 presenza</span></div>
   <a href="#prenota" data-service="individuale_online" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
 
 <div class="service-card">
   <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/><path d="M12 5 9.04 7.96a2.17 2.17 0 0 0 0 3.08v0c.82.82 2.13.85 3 .07l2.07-1.9a2.82 2.82 0 0 1 3.79 0l2.96 2.66"/><path d="m18 15-2-2"/><path d="m15 18-2-2"/></svg></div>
-  <h3>Spazio della Coppia</h3>
+  <h3 class="text-gradient">Spazio della Coppia</h3>
   <p style="color: var(--gray); font-size: 0.95rem;">Dialogo, fiducia e intimità nei momenti di cambiamento</p>
-  <div class="service-price">€100<span> online / €120 co-terapia</span></div>
+  <div class="service-price text-gradient">€100<span> online / €120 co-terapia</span></div>
   <a href="#prenota" data-service="coppia_online" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
 
 <div class="service-card">
   <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-  <h3>Psicoterapia Familiare</h3>
+  <h3 class="text-gradient">Psicoterapia Familiare</h3>
   <p style="color: var(--gray); font-size: 0.95rem;">Conflitti, crescita e nuove possibilità per famiglie con bambini e adolescenti</p>
-  <div class="service-price">€120<span> co-terapia</span></div>
+  <div class="service-price text-gradient">€120<span> co-terapia</span></div>
   <a href="#prenota" data-service="famiglia" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
 
 <div class="service-card">
   <div class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" width="56" height="56" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6"/><path d="M12 9v6"/><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20z"/></svg></div>
-  <h3>Parent Training</h3>
+  <h3 class="text-gradient">Parent Training</h3>
   <p style="color: var(--gray); font-size: 0.95rem;">Supporto alla genitorialità: comportamenti, sonno, alimentazione e sviluppo</p>
-  <div class="service-price">€90<span>/coppia genitoriale</span></div>
+  <div class="service-price text-gradient">€90<span>/coppia genitoriale</span></div>
   <a href="#prenota" data-service="parent_training" class="cta-btn" style="font-size: 0.875rem; padding: 0.65rem 1.25rem;">Prenota</a>
 </div>
         </div>
@@ -717,9 +724,9 @@ footer {
 </section>
 
 <!-- MINI RECENSIONI -->
-<section class="section" style="background: var(--gradient-main);">
+<section class="section" style="background: var(--white);">
     <div class="container">
-        <h2 class="section-title">Cosa Dicono i Pazienti</h2>
+        <h2 class="section-title text-gradient">Cosa Dicono i Pazienti</h2>
         
         <div class="reviews-grid">
             <div class="review-card">
@@ -746,7 +753,7 @@ footer {
 <!-- CONTATTI -->
 <section class="section">
     <div class="container">
-        <h2 class="section-title">Contatti</h2>
+        <h2 class="section-title" style="color: var(--white);">Contatti</h2>
         
         <div class="contact-info">
             <div class="contact-item">
