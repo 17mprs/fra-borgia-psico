@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dr.ssa Francesca Borgia - Prenota Ora</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
 * {
   margin: 0;
@@ -15,14 +15,26 @@
 }
 
 :root {
-  --primary: #0f3a52;
-  --secondary: #4a8fb5;
-  --success: #38A169;
-  --dark: #0f1419;
+  --primary: #FFF7F3;
+  --secondary: #d9a7bd;
+  --success: #9fe3bd;
+  --dark: #ffffff;
   --light: #f9f7f4;
   --white: #ffffff;
-  --gray: #6b7280;
-  --border: #e5e7eb;
+  --gray: rgba(255, 255, 255, 0.72);
+  --border: rgba(255, 255, 255, 0.22);
+  --bg-deep: #17060e;
+  --bg-burgundy: #260916;
+  --bg-plum: #361423;
+  --glass-fill: rgba(255, 244, 250, 0.075);
+  --glass-fill-strong: rgba(255, 244, 250, 0.115);
+  --glass-stroke: rgba(255, 255, 255, 0.22);
+  --glass-stroke-focus: rgba(255, 255, 255, 0.62);
+  --glass-blur: 22px;
+  --glass-saturate: 125%;
+  --radius-input: 18px;
+  --radius-card: 28px;
+  --radius-pill: 999px;
   --gradient-main: radial-gradient(
       ellipse at 78% 15%,
       rgba(69, 145, 180, 0.32) 0%,
@@ -43,16 +55,16 @@ html {
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: var(--dark);
   line-height: 1.6;
-  background: var(--gradient-main);
+  background: transparent;
   font-size: 16px;
 }
 
 h1, h2, h3 {
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
   color: var(--dark);
 }
 
@@ -125,9 +137,7 @@ header {
 
 /* HERO COMPATTO */
 .hero {
-  background-image: url('/sfondo-desktop.webp');
-  background-size: 100% 100%;
-  aspect-ratio: 16/9;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -520,9 +530,6 @@ footer {
 
 @media (max-width: 767px) {
   .hero {
-    background-image: url('/sfondo-mobile.webp');
-    background-size: 100% 100%;
-    aspect-ratio: 941/1672;
     padding: 6rem 1rem 3rem;
   }
 
@@ -597,9 +604,291 @@ footer {
     display: flex;
   }
 }
+
+/* ===== RESTYLING BORDEAUX GLASS ===== */
+html { background: var(--bg-deep); }
+
+body {
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.site-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-color: var(--bg-deep);
+  background-image:
+    url('/background-plum-desktop.webp'),
+    radial-gradient(ellipse 70% 55% at 82% 18%, rgba(120, 38, 70, 0.55) 0%, rgba(120, 38, 70, 0) 70%),
+    radial-gradient(ellipse 60% 50% at 12% 78%, rgba(88, 24, 52, 0.5) 0%, rgba(88, 24, 52, 0) 70%),
+    linear-gradient(155deg, var(--bg-plum) 0%, var(--bg-burgundy) 48%, var(--bg-deep) 100%);
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  transform: translateZ(0);
+}
+
+.site-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 2, 8, 0.54), rgba(15, 3, 11, 0.65) 52%, rgba(13, 2, 10, 0.76));
+}
+
+@media (max-width: 767px) {
+  .site-backdrop {
+    background-image:
+      url('/background-plum-mobile.webp'),
+      radial-gradient(ellipse 80% 45% at 85% 14%, rgba(120, 38, 70, 0.55) 0%, rgba(120, 38, 70, 0) 70%),
+      radial-gradient(ellipse 80% 40% at 10% 82%, rgba(88, 24, 52, 0.5) 0%, rgba(88, 24, 52, 0) 70%),
+      linear-gradient(170deg, var(--bg-plum) 0%, var(--bg-burgundy) 48%, var(--bg-deep) 100%);
+    background-position: 52% center;
+  }
+}
+
+/* sezioni trasparenti sul fondo fisso */
+.section { background: transparent !important; }
+.section-title,
+.section-title.text-gradient {
+  color: #ffffff !important;
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: #ffffff;
+}
+.text-gradient {
+  background: none;
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  color: #ffffff;
+  -webkit-text-fill-color: #ffffff;
+}
+
+/* glass */
+header,
+.service-card,
+.review-card,
+.contact-info,
+.booking-container {
+  position: relative;
+  isolation: isolate;
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-stroke);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.035),
+    0 16px 45px rgba(5, 0, 4, 0.16);
+}
+
+.service-card,
+.review-card,
+.contact-info,
+.booking-container { border-radius: var(--radius-card); }
+
+.service-card::before,
+.review-card::before,
+.contact-info::before,
+.booking-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.105) 0%, transparent 28%, transparent 72%, rgba(255, 255, 255, 0.035) 100%);
+  opacity: 0.65;
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  header,
+  .service-card,
+  .review-card,
+  .contact-info,
+  .booking-container,
+  .time-slot,
+  .form-group input,
+  .form-group select { background: rgba(50, 19, 36, 0.96); }
+}
+
+header {
+  border-radius: 0;
+  border-width: 0 0 1px 0;
+  background: rgba(38, 9, 22, 0.55);
+  box-shadow: 0 8px 30px rgba(5, 0, 4, 0.2);
+}
+
+.logo { color: #ffffff; font-family: 'Poppins', sans-serif; font-weight: 600; }
+
+.service-card:hover { transform: translateY(-3px); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.24), 0 18px 48px rgba(5, 0, 4, 0.24); }
+
+.service-card p,
+.review-text,
+.contact-details h4 { color: var(--text-muted, rgba(255, 255, 255, 0.72)) !important; }
+.service-price,
+.service-card h3,
+.review-author,
+.contact-details p,
+.contact-details a,
+.summary-value { color: #ffffff; }
+.service-price span { color: rgba(255, 255, 255, 0.66); }
+.review-stars { color: #f3d9a4; }
+.contact-details a { text-decoration: underline; text-underline-offset: 3px; }
+.contact-item { border-bottom-color: rgba(255, 255, 255, 0.16); }
+
+/* hero */
+.hero {
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding-top: 7rem;
+}
+.hero-badges-top { display: none; }
+.hero-bottom { margin-top: 0; gap: 1.25rem; }
+.hero h1 {
+  font-size: clamp(2.35rem, 9vw, 4.5rem);
+  line-height: 1.02;
+  letter-spacing: -0.045em;
+  color: #ffffff;
+  margin-bottom: 0;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}
+.hero-sub {
+  font-weight: 300;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.84);
+  text-shadow: none;
+  margin: 0 auto;
+}
+
+/* CTA primarie: avorio pill */
+.cta-hero,
+.cta-btn {
+  background: #FFF7F3;
+  color: #351027;
+  border-radius: var(--radius-pill);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 24px rgba(5, 0, 4, 0.25);
+  transition: opacity 0.25s, transform 0.25s;
+}
+.cta-hero:hover,
+.cta-btn:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 8px 24px rgba(5, 0, 4, 0.25);
+}
+.cta-hero { padding: 0.85rem 2rem; }
+header .cta-btn { min-height: 44px; }
+
+/* booking */
+.form-group label { color: #ffffff; }
+.form-group input,
+.form-group select {
+  min-height: 48px;
+  color: #ffffff;
+  color-scheme: dark;
+  background: var(--glass-fill-strong);
+  border: 1px solid var(--glass-stroke);
+  border-radius: var(--radius-input);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+}
+.form-group select option { background: #2a0e1d; color: #ffffff; }
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--glass-stroke-focus);
+  outline: 2px solid rgba(255, 255, 255, 0.85);
+  outline-offset: 2px;
+}
+.time-slot {
+  min-height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  background: var(--glass-fill-strong);
+  border: 1px solid var(--glass-stroke);
+  border-radius: var(--radius-input);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+}
+.time-slot:hover { border-color: var(--glass-stroke-focus); background: rgba(255, 244, 250, 0.18); }
+.time-slot.selected {
+  background: #FFF7F3;
+  color: #351027;
+  border-color: #FFF7F3;
+  box-shadow: 0 0 0 2px rgba(255, 247, 243, 0.35);
+}
+.time-slot.selected::before { content: '\2713\00a0'; }
+.time-slot:focus-visible { outline: 2px solid #ffffff; outline-offset: 2px; }
+.booking-summary {
+  background: rgba(159, 227, 189, 0.1);
+  border: 1px solid rgba(159, 227, 189, 0.6);
+  border-radius: var(--radius-input);
+}
+.summary-label { color: rgba(255, 255, 255, 0.72); }
+
+/* link e float */
+a:focus-visible,
+button:focus-visible { outline: 2px solid #ffffff; outline-offset: 3px; }
+.tel-float { background: #FFF7F3; }
+
+/* toast e footer */
+.toast {
+  background: rgba(45, 16, 31, 0.96);
+  color: #ffffff;
+  border: 1px solid var(--glass-stroke);
+  border-left: 4px solid var(--success);
+}
+.toast.error { border-left-color: #ff8a8a; }
+footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
+
+/* responsive: nessun overflow */
+.services-grid,
+.reviews-grid { grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); }
+@media (min-width: 768px) {
+  .services-grid { grid-template-columns: repeat(3, 1fr); }
+}
+.booking-container { padding: 1.25rem; }
+@media (min-width: 768px) { .booking-container { padding: 2rem; } }
+.contact-details p,
+.contact-details a { overflow-wrap: anywhere; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  header,
+  .service-card,
+  .review-card,
+  .contact-info,
+  .booking-container,
+  .time-slot,
+  .form-group input,
+  .form-group select {
+    background: rgba(45, 16, 31, 0.97);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
 </style>
 </head>
 <body>
+<div class="site-backdrop" aria-hidden="true"></div>
 
 <!-- HEADER -->
 <header>
@@ -617,6 +906,7 @@ footer {
     <span class="badge">Primo colloquio conoscitivo</span>
   </div>
   <div class="hero-bottom">
+    <h1>Dott.ssa Francesca Borgia</h1>
     <p class="hero-sub">Psicologa clinica perinatale, specializzanda in psicoterapia relazionale e sistemica</p>
     <a href="#prenota" class="cta-hero">Richiedi un primo colloquio</a>
   </div>
