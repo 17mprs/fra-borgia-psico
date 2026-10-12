@@ -1006,6 +1006,71 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
     backdrop-filter: none;
   }
 }
+
+/* ===== CHIP NAVIGAZIONE HERO ===== */
+.hero { position: relative; }
+
+.hero-nav {
+  position: absolute;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.hero-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0 1.1rem;
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #ffffff;
+  text-decoration: none;
+  background: var(--glass-fill-strong);
+  border: 1px solid var(--glass-stroke);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  transition: border-color 0.25s, background 0.25s;
+}
+
+.hero-nav a:hover {
+  border-color: var(--glass-stroke-focus);
+  background: rgba(255, 244, 250, 0.18);
+}
+
+.hero-nav a:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 3px;
+}
+
+#servizi,
+#recensioni,
+#contatti { scroll-margin-top: 5rem; }
+
+@media (min-width: 768px) {
+  .hero-nav { max-width: none; flex-wrap: nowrap; }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .hero-nav a { background: rgba(50, 19, 36, 0.96); }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .hero-nav a {
+    background: rgba(45, 16, 31, 0.97);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
 </style>
 </head>
 <body>
@@ -1021,6 +1086,12 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
 
 <!-- HERO -->
 <section class="hero">
+  <nav class="hero-nav" aria-label="Navigazione rapida">
+    <a href="#chi-sono">Chi sono</a>
+    <a href="#servizi">Servizi</a>
+    <a href="#recensioni">Recensioni</a>
+    <a href="#contatti">Contatti</a>
+  </nav>
   <div class="hero-badges-top">
     <span class="badge">Psicologa clinica perinatale</span>
     <span class="badge">Psicoterapia relazionale e sistemica</span>
@@ -1111,7 +1182,7 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
 </section>
 
 <!-- MINI SERVIZI -->
-<section class="section">
+<section class="section" id="servizi">
     <div class="container">
         <h2 class="section-title" style="color: var(--white);">I Miei Servizi</h2>
         
@@ -1152,7 +1223,7 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
 </section>
 
 <!-- MINI RECENSIONI -->
-<section class="section" style="background: var(--white);">
+<section class="section" id="recensioni" style="background: var(--white);">
     <div class="container">
         <h2 class="section-title text-gradient">Cosa Dicono i Pazienti</h2>
         
@@ -1179,7 +1250,7 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
 </section>
 
 <!-- CONTATTI -->
-<section class="section">
+<section class="section" id="contatti">
     <div class="container">
         <h2 class="section-title" style="color: var(--white);">Contatti</h2>
         
