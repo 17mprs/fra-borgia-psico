@@ -634,7 +634,11 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, rgba(18, 4, 13, 0.22), rgba(18, 4, 13, 0.16) 50%, rgba(18, 4, 13, 0.34));
+  background: linear-gradient(180deg,
+    rgba(18, 4, 13, 0.16) 0%,
+    rgba(18, 4, 13, 0.12) 35%,
+    rgba(18, 4, 13, 0.16) 70%,
+    rgba(18, 4, 13, 0.26) 100%);
 }
 
 @media (max-width: 767px) {
@@ -717,7 +721,8 @@ header,
 header {
   border-radius: 0;
   border-width: 0 0 1px 0;
-  background: rgba(38, 9, 22, 0.28);
+  background: rgba(38, 9, 22, 0.16);
+  border-bottom-color: rgba(255, 255, 255, 0.10);
   box-shadow: 0 8px 30px rgba(5, 0, 4, 0.2);
 }
 
