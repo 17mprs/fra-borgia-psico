@@ -720,6 +720,10 @@ header,
 }
 
 header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
   border-radius: 0;
   border-width: 0 0 1px 0;
   background: rgba(38, 9, 22, 0.16);
@@ -893,7 +897,7 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
 }
 
 /* ===== SEZIONE CHI SONO ===== */
-#chi-sono { scroll-margin-top: 5rem; }
+#chi-sono { scroll-margin-top: 6rem; }
 
 .about-inner {
   max-width: 760px;
@@ -1012,7 +1016,7 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
 
 .hero-nav {
   position: absolute;
-  top: 1.25rem;
+  top: 6.25rem;
   left: 0;
   right: 0;
   display: flex;
@@ -1052,9 +1056,14 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
   outline-offset: 3px;
 }
 
+#prenota,
 #servizi,
 #recensioni,
-#contatti { scroll-margin-top: 5rem; }
+#contatti { scroll-margin-top: 6rem; }
+
+@media (max-width: 767px) {
+  .hero { padding-top: 13.5rem; }
+}
 
 @media (min-width: 768px) {
   .hero-nav { max-width: none; flex-wrap: nowrap; }
