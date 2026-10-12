@@ -890,6 +890,121 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
     backdrop-filter: none;
   }
 }
+
+/* ===== SEZIONE CHI SONO ===== */
+#chi-sono { scroll-margin-top: 5rem; }
+
+.about-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.72);
+  margin-bottom: 0.75rem;
+}
+
+.about-lead {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
+  font-size: clamp(1.1rem, 4vw, 1.35rem);
+  line-height: 1.55;
+  color: #ffffff;
+  margin-bottom: 1.25rem;
+}
+
+.about-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 1rem;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.about-card {
+  position: relative;
+  isolation: isolate;
+  padding: 1.25rem;
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-stroke);
+  border-radius: var(--radius-card);
+  -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.035),
+    0 16px 45px rgba(5, 0, 4, 0.16);
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  z-index: -1;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.105) 0%, transparent 28%, transparent 72%, rgba(255, 255, 255, 0.035) 100%);
+  opacity: 0.65;
+}
+
+.about-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  color: #ffffff;
+  font-size: 1.15rem;
+}
+
+.about-card p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 0.84);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.about-closing {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  font-style: normal;
+  margin-top: 2rem;
+}
+
+.about-cta { margin-top: 1.5rem; }
+
+@media (min-width: 768px) {
+  .about-inner { text-align: left; }
+  .about-inner .section-title { text-align: center; }
+  .about-eyebrow { text-align: center; }
+  .about-grid { grid-template-columns: repeat(3, 1fr); text-align: left; }
+  .about-card { padding: 2rem; }
+  .about-closing { text-align: left; }
+}
+
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .about-card { background: rgba(50, 19, 36, 0.96); }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .about-card {
+    background: rgba(45, 16, 31, 0.97);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
 </style>
 </head>
 <body>
@@ -975,6 +1090,23 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
             </div>
         </div>
     </div>
+</section>
+
+<section class="section about" id="chi-sono" aria-labelledby="chi-sono-title">
+  <div class="container about-inner">
+    <p class="about-eyebrow">Chi sono</p>
+    <h2 class="section-title" id="chi-sono-title">Uno spazio di ascolto, per te e per le tue relazioni</h2>
+    <p class="about-lead">Sono la Dott.ssa Francesca Borgia, psicologa clinica perinatale e specializzanda in psicoterapia relazionale e sistemica.</p>
+    <p class="about-text">Accompagno persone, coppie e famiglie nei momenti di cambiamento, nelle difficoltà emotive e relazionali e nei percorsi legati alla genitorialità e all'età evolutiva.</p>
+    <p class="about-text">Il mio approccio sistemico-relazionale guarda la persona dentro la sua storia, i suoi legami e i contesti in cui vive: non solo il problema, ma anche le risorse e le possibilità di cambiamento.</p>
+    <div class="about-grid">
+      <article class="about-card"><h3>Genitorialità e perinatalità</h3><p>Diventare genitori trasforma gli equilibri personali e di coppia. Offro uno spazio protetto per comprendere cambiamenti, aspettative e fatiche, e riconoscere le proprie risorse.</p></article>
+      <article class="about-card"><h3>Coppia e famiglia</h3><p>Comunicazione, bisogni emotivi e dinamiche relazionali: uno spazio per ritrovare dialogo e fiducia, anche quando in famiglia ci sono bambini e adolescenti.</p></article>
+      <article class="about-card"><h3>Crescita personale</h3><p>Per chi attraversa un momento di difficoltà emotiva o personale: un percorso per acquisire consapevolezza, fiducia e autoefficacia.</p></article>
+    </div>
+    <p class="about-closing">Un ascolto autentico, accogliente e senza giudizio. Non serve avere già tutte le risposte per iniziare.</p>
+    <a href="#prenota" class="cta-btn about-cta">Richiedi un primo colloquio</a>
+  </div>
 </section>
 
 <!-- MINI SERVIZI -->
