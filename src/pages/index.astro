@@ -759,7 +759,7 @@ header {
 .hero-badges-top { display: none; }
 .hero-bottom { margin-top: 0; gap: 1.25rem; }
 .hero h1 {
-  font-size: clamp(2.35rem, 9vw, 4.5rem);
+  font-size: clamp(1.6rem, 8vw, 4.5rem);
   line-height: 1.02;
   letter-spacing: -0.045em;
   color: #ffffff;
@@ -1065,6 +1065,10 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
   .hero { padding-top: 13.5rem; }
 }
 
+.hero h1 { display: block; width: fit-content; max-width: 100%; margin-inline: auto; text-align: left; }
+.hero h1 .h1-title { display: block; }
+.hero h1 .h1-name { display: block; white-space: nowrap; }
+
 @media (min-width: 768px) {
   .hero-nav { max-width: none; flex-wrap: nowrap; }
 }
@@ -1107,7 +1111,7 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
     <span class="badge">Primo colloquio conoscitivo</span>
   </div>
   <div class="hero-bottom">
-    <h1>Dott.ssa Francesca Borgia</h1>
+    <h1><span class="h1-title">Dott.ssa</span> <span class="h1-name">Francesca Borgia</span></h1>
     <p class="hero-sub">Psicologa clinica perinatale, specializzanda in psicoterapia relazionale e sistemica</p>
     <a href="#prenota" class="cta-hero">Richiedi un primo colloquio</a>
   </div>
