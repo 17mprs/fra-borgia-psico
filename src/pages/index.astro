@@ -1077,6 +1077,28 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
   .hero-nav a { background: rgba(50, 19, 36, 0.96); }
 }
 
+/* ===== FLOAT: nascosti sul footer ===== */
+.tel-float,
+.wa-float {
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.2s, visibility 0s linear 0s;
+}
+
+body.floats-hidden .tel-float,
+body.floats-hidden .wa-float {
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  visibility: hidden;
+  transition: opacity 0.25s ease, transform 0.25s ease, box-shadow 0.2s, visibility 0s linear 0.25s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .tel-float,
+  .wa-float,
+  body.floats-hidden .tel-float,
+  body.floats-hidden .wa-float { transition: none; }
+}
+
 @media (prefers-reduced-transparency: reduce) {
   .hero-nav a {
     background: rgba(45, 16, 31, 0.97);
@@ -1514,5 +1536,17 @@ console.log('✅ Mini Booking App Caricata');
     <path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.117 1.528 5.845L.057 23.143a.75.75 0 0 0 .9.972l5.522-1.456A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.712 9.712 0 0 1-4.953-1.357l-.355-.211-3.678.970.988-3.607-.232-.371A9.715 9.715 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
   </svg>
 </a>
+<script>
+const floatsFooter = document.querySelector('footer');
+const floatsTel = document.querySelector('.tel-float');
+const floatsWa = document.querySelector('.wa-float');
+if (floatsFooter && floatsTel && floatsWa && 'IntersectionObserver' in window) {
+  new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      document.body.classList.toggle('floats-hidden', entry.isIntersecting);
+    });
+  }, { rootMargin: '0px', threshold: 0 }).observe(floatsFooter);
+}
+</script>
 </body>
 </html>
