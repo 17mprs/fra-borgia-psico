@@ -905,6 +905,27 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
   text-align: center;
 }
 
+.about-photo {
+  width: min(80vw, 360px);
+  margin: 1.75rem auto 2rem;
+  padding: 0.5rem;
+  background: var(--glass-fill);
+  border: 1px solid var(--glass-stroke);
+  border-radius: var(--radius-card);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 16px 45px rgba(5, 0, 4, 0.22);
+}
+
+.about-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1122 / 1402;
+  object-fit: cover;
+  border-radius: calc(var(--radius-card) - 0.35rem);
+}
+
 .about-eyebrow {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
@@ -1203,6 +1224,15 @@ body.floats-hidden .wa-float {
   <div class="container about-inner">
     <p class="about-eyebrow">Chi sono</p>
     <h2 class="section-title" id="chi-sono-title">Uno spazio di ascolto, per te e per le tue relazioni</h2>
+    <figure class="about-photo">
+      <img
+        src="/img/hero-bio-fra-800.webp"
+        srcset="/img/hero-bio-fra-480.webp 480w, /img/hero-bio-fra-800.webp 800w, /img/hero-bio-fra-1122.webp 1122w"
+        sizes="(min-width: 768px) 360px, 80vw"
+        width="1122" height="1402"
+        alt="Ritratto della Dott.ssa Francesca Borgia, psicologa clinica perinatale, seduta in poltrona nel suo studio"
+        loading="lazy" decoding="async">
+    </figure>
     <p class="about-lead">Sono la Dott.ssa Francesca Borgia, psicologa clinica perinatale e specializzanda in psicoterapia relazionale e sistemica.</p>
     <p class="about-text">Accompagno persone, coppie e famiglie nei momenti di cambiamento, nelle difficoltà emotive e relazionali e nei percorsi legati alla genitorialità e all'età evolutiva.</p>
     <p class="about-text">Il mio approccio sistemico-relazionale guarda la persona dentro la sua storia, i suoi legami e i contesti in cui vive: non solo il problema, ma anche le risorse e le possibilità di cambiamento.</p>
