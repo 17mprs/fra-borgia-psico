@@ -484,6 +484,37 @@ header {
   text-decoration: underline;
 }
 
+/* ===== BANNER COPERTINA: PARALLASSE ORIZZONTALE ===== */
+.cover-band {
+  position: relative;
+  overflow: hidden;
+  height: clamp(220px, 30vw, 440px);
+  background: rgba(13, 2, 10, 0.55);
+}
+
+.cover-band-img {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 200%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 46% 35%;
+  /* senza JS o con movimento ridotto: immagine ferma e centrata */
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.cover-band.is-parallax .cover-band-img {
+  left: 0;
+  transform: translate3d(var(--px, 0px), 0, 0);
+  will-change: transform;
+}
+
+@media (min-width: 768px) {
+  .cover-band-img { width: 125%; }
+}
+
 /* FOOTER MINIMAL */
 footer {
   background: var(--dark);
@@ -1355,6 +1386,18 @@ body.floats-hidden .wa-float {
     </div>
 </section>
 
+<!-- BANNER COPERTINA (parallasse orizzontale) -->
+<section class="cover-band" id="copertina" aria-label="Dott.ssa Francesca Borgia nel suo studio">
+  <img
+    class="cover-band-img"
+    src="/img/copertina-fra-1600.webp"
+    srcset="/img/copertina-fra-1000.webp 1000w, /img/copertina-fra-1600.webp 1600w, /img/copertina-fra-2172.webp 2172w"
+    sizes="(min-width: 768px) 125vw, 200vw"
+    width="2172" height="724"
+    alt="La Dott.ssa Francesca Borgia seduta alla scrivania del suo studio, con piante e luce soffusa"
+    loading="lazy" decoding="async">
+</section>
+
 <!-- FOOTER -->
 <footer>
     <p>&copy; 2026 Dr.ssa Francesca Borgia - Psicologa Clinica | Albo Psicologi Lazio (placeholder) | P.IVA: (placeholder)</p>
@@ -1576,6 +1619,33 @@ if (floatsFooter && floatsTel && floatsWa && 'IntersectionObserver' in window) {
       document.body.classList.toggle('floats-hidden', entry.isIntersecting);
     });
   }, { rootMargin: '0px', threshold: 0 }).observe(floatsFooter);
+}
+</script>
+<script>
+// Parallasse orizzontale: l'immagine scorre di lato mentre la pagina scorre in verticale
+const coverBand = document.querySelector('.cover-band');
+const coverImg = coverBand && coverBand.querySelector('.cover-band-img');
+if (coverBand && coverImg && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  coverBand.classList.add('is-parallax');
+  let coverTicking = false;
+  const coverUpdate = () => {
+    coverTicking = false;
+    const rect = coverBand.getBoundingClientRect();
+    const vh = window.innerHeight;
+    // il banner sta a fine pagina: l'ultima posizione raggiungibile chiude la corsa (progress = 1)
+    const maxScroll = document.documentElement.scrollHeight - vh;
+    const topAtEnd = rect.top - (maxScroll - window.scrollY);
+    const span = Math.max(1, vh - topAtEnd);
+    const progress = Math.min(1, Math.max(0, (vh - rect.top) / span));
+    const overflow = Math.max(0, coverImg.offsetWidth - coverBand.clientWidth);
+    coverBand.style.setProperty('--px', (-overflow * progress).toFixed(1) + 'px');
+  };
+  const coverRequest = () => {
+    if (!coverTicking) { coverTicking = true; requestAnimationFrame(coverUpdate); }
+  };
+  window.addEventListener('scroll', coverRequest, { passive: true });
+  window.addEventListener('resize', coverRequest);
+  coverUpdate();
 }
 </script>
 </body>
