@@ -1150,7 +1150,37 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
 }
 
 @media (min-width: 768px) {
-  .hero-photo { width: 200px; height: 200px; }
+  /* desktop/tablet: foto a sinistra, nome e testi a destra */
+  .hero { padding-top: 9.5rem; }
+  .hero-bottom {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    column-gap: clamp(2rem, 5vw, 4.5rem);
+    row-gap: 1.1rem;
+    align-items: center;
+    justify-items: start;
+    width: 100%;
+    max-width: 1040px;
+    margin-inline: auto;
+    text-align: left;
+  }
+  .hero-photo {
+    grid-column: 1;
+    grid-row: 1 / span 3;
+    width: clamp(220px, 24vw, 320px);
+    height: clamp(220px, 24vw, 320px);
+    margin: 0;
+  }
+  .hero-bottom h1,
+  .hero-bottom .hero-sub,
+  .hero-bottom .cta-hero { grid-column: 2; }
+  .hero .hero-bottom h1 {
+    margin-inline: 0;
+    align-self: end;
+    font-size: clamp(2.3rem, 5.2vw, 4.5rem);
+  }
+  .hero-bottom .hero-sub { margin: 0; text-align: left; }
+  .hero-bottom .cta-hero { align-self: start; }
 }
 
 .hero h1 { display: block; width: fit-content; max-width: 100%; margin-inline: auto; text-align: left; }
@@ -1225,7 +1255,7 @@ body.floats-hidden .wa-float {
       class="hero-photo"
       src="/img/hero-fra-360.webp"
       srcset="/img/hero-fra-240.webp 240w, /img/hero-fra-360.webp 360w, /img/hero-fra-480.webp 480w"
-      sizes="(min-width: 768px) 200px, 150px"
+      sizes="(min-width: 768px) 320px, 150px"
       width="360" height="360"
       alt="La Dott.ssa Francesca Borgia, psicologa clinica"
       fetchpriority="high" decoding="async">
