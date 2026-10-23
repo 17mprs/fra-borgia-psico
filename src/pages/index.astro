@@ -1138,6 +1138,21 @@ footer { background: rgba(13, 2, 10, 0.55); color: rgba(255, 255, 255, 0.78); }
   .hero { padding-top: 13.5rem; }
 }
 
+.hero-photo {
+  display: block;
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 247, 243, 0.92);
+  box-shadow: 0 14px 40px rgba(5, 0, 4, 0.35);
+}
+
+@media (min-width: 768px) {
+  .hero-photo { width: 200px; height: 200px; }
+}
+
 .hero h1 { display: block; width: fit-content; max-width: 100%; margin-inline: auto; text-align: left; }
 .hero h1 .h1-title { display: block; }
 .hero h1 .h1-name { display: block; white-space: nowrap; }
@@ -1206,6 +1221,14 @@ body.floats-hidden .wa-float {
     <span class="badge">Primo colloquio conoscitivo</span>
   </div>
   <div class="hero-bottom">
+    <img
+      class="hero-photo"
+      src="/img/hero-fra-360.webp"
+      srcset="/img/hero-fra-240.webp 240w, /img/hero-fra-360.webp 360w, /img/hero-fra-480.webp 480w"
+      sizes="(min-width: 768px) 200px, 150px"
+      width="360" height="360"
+      alt="La Dott.ssa Francesca Borgia, psicologa clinica"
+      fetchpriority="high" decoding="async">
     <h1><span class="h1-title">Dott.ssa</span> <span class="h1-name">Francesca Borgia</span></h1>
     <p class="hero-sub">Psicologa clinica perinatale, specializzanda in psicoterapia relazionale e sistemica</p>
     <a href="#prenota" class="cta-hero">Richiedi un primo colloquio</a>
