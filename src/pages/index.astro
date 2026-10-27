@@ -1738,7 +1738,7 @@ function updateSummary() {
 }
 
 // CONFERMA PRENOTAZIONE
-const WEB3FORMS_KEY = 'INSERISCI_ACCESS_KEY';
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/didattivo@gmail.com';
 
 document.getElementById('confirmBooking').addEventListener('click', async () => {
     if (!bookingState.date || !bookingState.time) {
@@ -1766,14 +1766,13 @@ document.getElementById('confirmBooking').addEventListener('click', async () => 
         .toLocaleDateString('it-IT', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
     try {
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch(FORM_ENDPOINT, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
-                access_key: WEB3FORMS_KEY,
-                subject: `Nuova richiesta di colloquio - ${name}`,
-                from_name: 'Sito psicologaperinatale.com',
-                replyto: email,
+                _subject: `Nuova richiesta di colloquio - ${name}`,
+                _template: 'table',
+                _captcha: 'false',
                 Nome: name,
                 Telefono: phone,
                 Email: email,
@@ -1784,7 +1783,7 @@ document.getElementById('confirmBooking').addEventListener('click', async () => 
             })
         });
         const out = await res.json();
-        if (!res.ok || !out.success) throw new Error(out.message || 'Errore invio');
+        if (!res.ok || !(out.success === true || out.success === 'true')) throw new Error(out.message || 'Errore invio');
     } catch (err) {
         console.error(err);
         showToast('Invio non riuscito. Riprova o contattaci al telefono.', 'error');
