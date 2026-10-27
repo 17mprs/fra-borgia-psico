@@ -1274,8 +1274,9 @@ body.floats-hidden .wa-float {
         <div class="booking-container">
             <div class="booking-grid">
                 <div class="form-group">
-                    <label for="bookingDate">Seleziona Data</label>
-                    <input type="date" id="bookingDate" min="">
+                    <label id="calLabel">Seleziona Data (martedì e mercoledì)</label>
+                    <input type="hidden" id="bookingDate">
+                    <div id="calendar" class="cal" role="group" aria-labelledby="calLabel"></div>
                 </div>
                 
                 <div class="form-group">
@@ -1504,21 +1505,39 @@ body.floats-hidden .wa-float {
     <div id="toastMessage"></div>
 </div>
 
+<style is:global>
+.cal { width: 100%; }
+.cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+.cal-title { font-weight: 600; text-transform: capitalize; }
+.cal-nav { background: transparent; border: 1px solid var(--border); color: #fff; width: 2rem; height: 2rem; border-radius: 50%; cursor: pointer; font-size: 1rem; line-height: 1; }
+.cal-nav:disabled { opacity: 0.25; cursor: not-allowed; }
+.cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.25rem; }
+.cal-dow { text-align: center; font-size: 0.7rem; opacity: 0.7; padding: 0.2rem 0; }
+.cal-day { aspect-ratio: 1; border-radius: 0.5rem; border: 1px solid transparent; background: transparent; color: #fff; font: inherit; font-size: 0.85rem; }
+.cal-day:disabled { opacity: 0.22; cursor: not-allowed; }
+.cal-day.avail { border-color: var(--border); background: rgba(255, 244, 250, 0.12); cursor: pointer; font-weight: 600; }
+.cal-day.avail:hover { background: rgba(255, 244, 250, 0.22); }
+.cal-day.selected { background: #fff7f3; color: #361423; border-color: #fff7f3; }
+.cal-day:focus-visible, .cal-nav:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+</style>
+
 <script>
 // CONFIGURAZIONE
 const bookingState = {
     date: null,
     time: null,
-    service: 'gratuita'
+    service: 'individuale_online'
 };
 
+// Primi colloqui: solo martedì e mercoledì, dalle 8 alle 18 (slot da 1 ora)
+const ORARI = ['08:00','09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
 const weeklySlots = {
   0: [], // domenica
   1: [], // lunedì
-  2: ['16:00'], // martedì
-  3: [], // mercoledì
-  4: ['11:30'], // giovedì
-  5: ['10:00'], // venerdì
+  2: ORARI, // martedì
+  3: ORARI, // mercoledì
+  4: [], // giovedì
+  5: [], // venerdì
   6: []  // sabato
 };
 
@@ -1536,8 +1555,49 @@ const services = {
   'parent_training': { name: 'Parent Training', price: 90 }
 };
 
-// INIT DATA MIN
-document.getElementById('bookingDate').min = new Date().toISOString().split('T')[0];
+// CALENDARIO: solo i giorni con slot sono selezionabili
+const MESI_AVANTI = 3;
+const pad = n => String(n).padStart(2, '0');
+const toISO = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const today = new Date(); today.setHours(0, 0, 0, 0);
+let calMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+let calSelected = null;
+
+function renderCalendar() {
+    const cal = document.getElementById('calendar');
+    const first = new Date(calMonth);
+    const last = new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 0);
+    const limit = new Date(today.getFullYear(), today.getMonth() + MESI_AVANTI, 1);
+    const title = first.toLocaleDateString('it-IT', { month: 'long', year: 'numeric' });
+
+    let html = `<div class="cal-head">
+        <button type="button" class="cal-nav" id="calPrev" aria-label="Mese precedente" ${first <= new Date(today.getFullYear(), today.getMonth(), 1) ? 'disabled' : ''}>‹</button>
+        <span class="cal-title">${title}</span>
+        <button type="button" class="cal-nav" id="calNext" aria-label="Mese successivo" ${first >= limit ? 'disabled' : ''}>›</button>
+    </div><div class="cal-grid">`;
+    ['Lun','Mar','Mer','Gio','Ven','Sab','Dom'].forEach(d => html += `<div class="cal-dow">${d}</div>`);
+    for (let i = 0; i < (first.getDay() + 6) % 7; i++) html += '<div></div>';
+    for (let day = 1; day <= last.getDate(); day++) {
+        const d = new Date(first.getFullYear(), first.getMonth(), day);
+        const iso = toISO(d);
+        const ok = (weeklySlots[d.getDay()] || []).length > 0 && d >= today;
+        const cls = 'cal-day' + (ok ? ' avail' : '') + (iso === calSelected ? ' selected' : '');
+        html += `<button type="button" class="${cls}" data-date="${iso}" ${ok ? '' : 'disabled'} ${iso === calSelected ? 'aria-pressed="true"' : ''}>${day}</button>`;
+    }
+    html += '</div>';
+    cal.innerHTML = html;
+
+    document.getElementById('calPrev').addEventListener('click', () => { calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() - 1, 1); renderCalendar(); });
+    document.getElementById('calNext').addEventListener('click', () => { calMonth = new Date(calMonth.getFullYear(), calMonth.getMonth() + 1, 1); renderCalendar(); });
+    cal.querySelectorAll('.cal-day.avail').forEach(btn => btn.addEventListener('click', () => {
+        calSelected = btn.dataset.date;
+        const input = document.getElementById('bookingDate');
+        input.value = calSelected;
+        input.dispatchEvent(new Event('change'));
+        renderCalendar();
+    }));
+}
+renderCalendar();
 
 // GESTIONE DATA
 document.getElementById('bookingDate').addEventListener('change', function() {
@@ -1562,7 +1622,9 @@ document.getElementById('bookingDate').addEventListener('change', function() {
         slot.className = 'time-slot';
         slot.textContent = time;
         
-        if (booked.includes(time)) {
+        const [h, m] = time.split(':').map(Number);
+        const slotDate = new Date(date); slotDate.setHours(h, m, 0, 0);
+        if (booked.includes(time) || slotDate <= new Date()) {
             slot.classList.add('disabled');
         } else {
             slot.addEventListener('click', () => selectTime(time, slot));
@@ -1690,6 +1752,8 @@ document.getElementById('confirmBooking').addEventListener('click', async () => 
     // Reset dopo 2 secondi
     setTimeout(() => {
         document.getElementById('bookingDate').value = '';
+        calSelected = null;
+        renderCalendar();
         document.getElementById('timeSlots').innerHTML = '<div style="grid-column: 1 / -1; text-align: center; color: var(--gray); padding: 1rem;">Seleziona una data per vedere gli orari disponibili</div>';
         document.getElementById('bookingSummary').classList.remove('show');
         bookingState.date = null;
