@@ -1318,6 +1318,25 @@ body.floats-hidden .wa-float {
                     <span class="summary-label" style="font-size: 1.125rem;">Totale:</span>
                     <span class="summary-value" style="font-size: 1.25rem; color: var(--success);" id="summaryPrice">GRATUITO</span>
                 </div>
+                <div class="booking-grid" style="margin-top: 1rem;">
+                    <div class="form-group">
+                        <label for="bookingName">Nome e cognome *</label>
+                        <input type="text" id="bookingName" autocomplete="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookingPhone">Telefono *</label>
+                        <input type="tel" id="bookingPhone" autocomplete="tel" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="bookingEmail">Email *</label>
+                    <input type="email" id="bookingEmail" autocomplete="email" required>
+                </div>
+                <label style="display:flex; gap:0.6rem; align-items:flex-start; font-size:0.8rem; margin-top:0.75rem; color: var(--gray);">
+                    <input type="checkbox" id="bookingPrivacy" style="margin-top:0.2rem;">
+                    <span>Acconsento al trattamento dei miei dati personali per essere ricontattato/a ai fini della prenotazione (GDPR).</span>
+                </label>
+                <input type="checkbox" id="bookingBotcheck" tabindex="-1" autocomplete="off" style="display:none;">
                 <button class="cta-btn" id="confirmBooking" style="width: 100%; margin-top: 1rem;">
                     Conferma Prenotazione
                 </button>
@@ -1591,12 +1610,61 @@ function updateSummary() {
 }
 
 // CONFERMA PRENOTAZIONE
-document.getElementById('confirmBooking').addEventListener('click', () => {
+const WEB3FORMS_KEY = 'INSERISCI_ACCESS_KEY';
+
+document.getElementById('confirmBooking').addEventListener('click', async () => {
     if (!bookingState.date || !bookingState.time) {
         showToast('Seleziona data e orario', 'error');
         return;
     }
-    
+
+    const name = document.getElementById('bookingName').value.trim();
+    const phone = document.getElementById('bookingPhone').value.trim();
+    const email = document.getElementById('bookingEmail').value.trim();
+    if (!name || !phone || !email || !document.getElementById('bookingEmail').checkValidity()) {
+        showToast('Inserisci nome, telefono ed email validi', 'error');
+        return;
+    }
+    if (!document.getElementById('bookingPrivacy').checked) {
+        showToast('Devi acconsentire al trattamento dei dati', 'error');
+        return;
+    }
+    if (document.getElementById('bookingBotcheck').checked) return;
+
+    const btn = document.getElementById('confirmBooking');
+    btn.disabled = true;
+
+    const dataLeggibile = new Date(bookingState.date + 'T00:00:00')
+        .toLocaleDateString('it-IT', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+
+    try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({
+                access_key: WEB3FORMS_KEY,
+                subject: `Nuova richiesta di colloquio - ${name}`,
+                from_name: 'Sito psicologaperinatale.com',
+                replyto: email,
+                Nome: name,
+                Telefono: phone,
+                Email: email,
+                Servizio: services[bookingState.service].name,
+                Prezzo: `€${services[bookingState.service].price}`,
+                Data: dataLeggibile,
+                Orario: bookingState.time
+            })
+        });
+        const out = await res.json();
+        if (!res.ok || !out.success) throw new Error(out.message || 'Errore invio');
+    } catch (err) {
+        console.error(err);
+        showToast('Invio non riuscito. Riprova o contattaci al telefono.', 'error');
+        btn.disabled = false;
+        return;
+    }
+    btn.disabled = false;
+
     const booking = {
         id: 'BOOK-' + Date.now(),
         date: bookingState.date,
@@ -1617,7 +1685,7 @@ document.getElementById('confirmBooking').addEventListener('click', () => {
     
     console.log('✅ Prenotazione:', booking);
     
-    showToast('Prenotazione confermata! Riceverai una email di conferma.', 'success');
+    showToast('Richiesta inviata! La dott.ssa ti ricontatterà per confermare.', 'success');
     
     // Reset dopo 2 secondi
     setTimeout(() => {
