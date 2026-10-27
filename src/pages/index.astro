@@ -1738,7 +1738,6 @@ function updateSummary() {
 }
 
 // CONFERMA PRENOTAZIONE
-const WEB3FORMS_KEY = '2daa79e0-fe8e-4ad1-bcd9-1e9b581404c2';
 
 document.getElementById('confirmBooking').addEventListener('click', async () => {
     if (!bookingState.date || !bookingState.time) {
@@ -1762,25 +1761,17 @@ document.getElementById('confirmBooking').addEventListener('click', async () => 
     const btn = document.getElementById('confirmBooking');
     btn.disabled = true;
 
-    const dataLeggibile = new Date(bookingState.date + 'T00:00:00')
-        .toLocaleDateString('it-IT', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
-
     try {
-        const res = await fetch('https://api.web3forms.com/submit', {
+        const res = await fetch('/api/prenota', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
             body: JSON.stringify({
-                access_key: WEB3FORMS_KEY,
-                subject: `Nuova richiesta di colloquio - ${name}`,
-                from_name: 'Sito psicologaperinatale.com',
-                replyto: email,
-                Nome: name,
-                Telefono: phone,
-                Email: email,
-                Servizio: services[bookingState.service].name,
-                Prezzo: `€${services[bookingState.service].price}`,
-                Data: dataLeggibile,
-                Orario: bookingState.time
+                name, phone, email,
+                service: services[bookingState.service].name,
+                price: `€${services[bookingState.service].price}`,
+                date: bookingState.date,
+                time: bookingState.time,
+                hp: document.getElementById('bookingBotcheck').checked ? '1' : ''
             })
         });
         const out = await res.json();
@@ -1813,7 +1804,7 @@ document.getElementById('confirmBooking').addEventListener('click', async () => 
     
     console.log('✅ Prenotazione:', booking);
     
-    showToast('Richiesta inviata! La dott.ssa ti ricontatterà per confermare.', 'success');
+    showToast('Richiesta inviata! Ti abbiamo scritto una email di riepilogo: la dott.ssa ti ricontatterà per confermare.', 'success');
     
     // Reset dopo 2 secondi
     setTimeout(() => {
