@@ -1534,7 +1534,7 @@ body.floats-hidden .wa-float {
                 </div>
             </div>
 
-            <nav class="contact-social" aria-label="Social e recensioni">
+            <nav class="contact-social" aria-label="Social e recensioni" style="display:none"> <!-- NASCOSTO finche' mancano i link reali: rimuovere style -->
                 <!-- TODO: sostituire gli href "#" con i link reali dei profili -->
                 <a href="#" target="_blank" rel="noopener noreferrer me" aria-label="LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg></a>
                 <a href="#" target="_blank" rel="noopener noreferrer me" aria-label="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -1738,7 +1738,7 @@ function updateSummary() {
 }
 
 // CONFERMA PRENOTAZIONE
-const WEB3FORMS_KEY = 'INSERISCI_ACCESS_KEY';
+const WEB3FORMS_KEY = '2daa79e0-fe8e-4ad1-bcd9-1e9b581404c2';
 
 document.getElementById('confirmBooking').addEventListener('click', async () => {
     if (!bookingState.date || !bookingState.time) {
